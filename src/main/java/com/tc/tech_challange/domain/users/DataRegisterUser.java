@@ -8,5 +8,6 @@ public record DataRegisterUser (
         String email,
         @NotNull(message = "senha nao pode ser nulo")
         String password
-){
+)
+{
 }

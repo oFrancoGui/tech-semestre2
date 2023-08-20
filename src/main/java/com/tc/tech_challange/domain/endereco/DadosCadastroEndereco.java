@@ -19,4 +19,5 @@ public record DadosCadastroEndereco(
         String cidade,
         @NotNull(message = "estado cannot be null")
         String estado
+
         ) { }

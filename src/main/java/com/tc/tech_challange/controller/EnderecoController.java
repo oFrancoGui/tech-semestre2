@@ -27,7 +27,7 @@ public class EnderecoController {
     }
     @GetMapping("/{id}")
     @Transactional
-    public ResponseEntity detalhar(@PathVariable Long id){
+    public ResponseEntity detalhar(@PathVariable Integer id){
             var endereco = repository.getReferenceById(id);
             return ResponseEntity.ok(new DadosDetalhamentoEndereco(endereco));
     }

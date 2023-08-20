@@ -21,7 +21,7 @@ public class Pessoas {
     @Id
     @GeneratedValue(generator = "UUID")
     @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
-    @Column(name="uuid")
+    @Column(name="uuid_pessoa")
     private UUID id;
     @Column(name="cpf")
     private String cpf;

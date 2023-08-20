@@ -11,17 +11,24 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
-@EqualsAndHashCode(of = "id")
 public class Endereco {
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
+        @Column(name="uuid_endereco")
         private Long id;
-        private int cep ;
+        @Column(name="CEP")
+        private int cep;
+        @Column(name="Rua")
         private String rua;
+        @Column(name="Numero")
         private int numero;
+        @Column(name="Complemento")
         private String compl;
+        @Column(name="Bairro")
         private String bairro;
+        @Column(name="Cidade")
         private String cidade;
+         @Column(name="Estado")
         private String estado;
 
         public Endereco(DadosCadastroEndereco dados){
