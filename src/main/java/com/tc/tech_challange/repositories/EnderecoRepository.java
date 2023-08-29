@@ -1,5 +1,6 @@
-package com.tc.tech_challange.domain.endereco;
+package com.tc.tech_challange.repositories;
 
+import com.tc.tech_challange.domain.endereco.Endereco;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;

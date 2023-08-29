@@ -3,7 +3,7 @@ package com.tc.tech_challange.controller;
 import com.tc.tech_challange.domain.eletro.DadosCadastroEletro;
 import com.tc.tech_challange.domain.eletro.DadosDetalhamentoEletro;
 import com.tc.tech_challange.domain.eletro.Eletro;
-import com.tc.tech_challange.domain.eletro.EletroRepository;
+import com.tc.tech_challange.repositories.EletroRepository;
 import jakarta.validation.Valid;
 import lombok.SneakyThrows;
 import org.json.JSONObject;

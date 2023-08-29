@@ -3,7 +3,7 @@ package com.tc.tech_challange.controller;
 import com.tc.tech_challange.domain.pessoas.DadosCadastroPessoa;
 import com.tc.tech_challange.domain.pessoas.DadosDetalhamentoPessoas;
 import com.tc.tech_challange.domain.pessoas.Pessoas;
-import com.tc.tech_challange.domain.pessoas.PessoasRepository;
+import com.tc.tech_challange.repositories.PessoasRepository;
 import jakarta.validation.Valid;
 import lombok.SneakyThrows;
 import org.json.JSONObject;

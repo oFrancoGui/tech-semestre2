@@ -1,10 +1,9 @@
 package com.tc.tech_challange.controller;
 
-import com.tc.tech_challange.domain.endereco.*;
 import com.tc.tech_challange.domain.endereco.DadosCadastroEndereco;
 import com.tc.tech_challange.domain.endereco.DadosDetalhamentoEndereco;
 import com.tc.tech_challange.domain.endereco.Endereco;
-import com.tc.tech_challange.domain.endereco.EnderecoRepository;
+import com.tc.tech_challange.repositories.EnderecoRepository;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
