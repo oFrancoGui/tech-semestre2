@@ -1,10 +1,16 @@
 package com.tc.tech_challange.domain.endereco;
 
+import com.tc.tech_challange.domain.eletro.Eletro;
+import com.tc.tech_challange.domain.pessoas.Pessoa;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 @Table(name = "endereco")
 @Entity(name = "Endereco")
@@ -28,8 +34,15 @@ public class Endereco {
         private String bairro;
         @Column(name="Cidade")
         private String cidade;
-         @Column(name="Estado")
+        @Column(name="Estado")
         private String estado;
+        @ManyToMany
+        @JoinTable(
+                name = "enderecoPessoa",
+                joinColumns = @JoinColumn(name = "uuid_endereco"),
+                inverseJoinColumns = @JoinColumn(name = "uuid_pessoa")
+        )
+        Set<Pessoa> pessoas = new HashSet<>();
 
         public Endereco(DadosCadastroEndereco dados){
             this.cep = dados.cep();
