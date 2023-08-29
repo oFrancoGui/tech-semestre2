@@ -14,10 +14,10 @@ import java.util.UUID;
 @Getter
 @Setter
 @Entity
-@Table(name = "pessoas")
+@Table(name = "pessoa")
 
 
-public class Pessoas {
+public class Pessoa {
     @Id
     @GeneratedValue(generator = "UUID")
     @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
@@ -40,7 +40,7 @@ public class Pessoas {
 
 
 
-    public Pessoas (DadosCadastroPessoa dados){
+    public Pessoa(DadosCadastroPessoa dados){
         this.cpf = dados.cpf();
         this.nome = dados.nome();
         this.email = dados.email();

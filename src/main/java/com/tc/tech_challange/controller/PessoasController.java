@@ -2,7 +2,7 @@ package com.tc.tech_challange.controller;
 
 import com.tc.tech_challange.domain.pessoas.DadosCadastroPessoa;
 import com.tc.tech_challange.domain.pessoas.DadosDetalhamentoPessoas;
-import com.tc.tech_challange.domain.pessoas.Pessoas;
+import com.tc.tech_challange.domain.pessoas.Pessoa;
 import com.tc.tech_challange.repositories.PessoasRepository;
 import jakarta.validation.Valid;
 import lombok.SneakyThrows;
@@ -31,7 +31,7 @@ public class PessoasController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response.toString());
         }
         else {
-            var pessoas = new Pessoas(dados);
+            var pessoas = new Pessoa(dados);
             repository.save(pessoas);
             var uri = uriBuilder.path("/pessoas/{id}").buildAndExpand(pessoas.getId()).toUri();
             response.put("message", "Usuario registrdo com sucesso");
