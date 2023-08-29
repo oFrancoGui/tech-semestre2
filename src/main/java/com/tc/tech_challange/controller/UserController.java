@@ -4,7 +4,7 @@ package com.tc.tech_challange.controller;
 import com.tc.tech_challange.domain.users.DataRegisterUser;
 import com.tc.tech_challange.domain.users.DataUserDetails;
 import com.tc.tech_challange.domain.users.User;
-import com.tc.tech_challange.domain.users.UserRepository;
+import com.tc.tech_challange.repositories.UserRepository;
 import jakarta.validation.Valid;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,5 +1,6 @@
-package com.tc.tech_challange.domain.users;
+package com.tc.tech_challange.repositories;
 
+import com.tc.tech_challange.domain.users.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.web.bind.annotation.PathVariable;
 
