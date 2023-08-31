@@ -1,6 +1,7 @@
 package com.tc.tech_challange.domain.pessoas;
 
 
+import com.tc.tech_challange.domain.users.User;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -8,6 +9,8 @@ import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.UUID;
 
 @NoArgsConstructor
@@ -23,6 +26,9 @@ public class Pessoa {
     @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
     @Column(name="uuid_pessoa")
     private UUID id;
+    @ManyToOne
+    @JoinColumn (name = "uuid_user", nullable = false)
+    private User user;
     @Column(name="cpf")
     private String cpf;
     @Column(name="nome")
