@@ -31,5 +31,11 @@ public class UsoEletroEndereco {
     Endereco endereco;
 
     @Column(name="HorasUso")
-    private int horaUso;
+    private int horasUso;
+
+    public UsoEletroEndereco(DadosCadastroUsoEletroEndereco dados) {
+        this.eletro = dados.eletro();
+        this.endereco = dados.endereco();
+        this.horasUso = dados.horasUso();
+    }
 }

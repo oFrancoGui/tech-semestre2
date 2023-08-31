@@ -16,11 +16,6 @@ public record DadosCadastroEletro(
         int potencia,
         @NotNull(message = "voltagem nao pode ser nulo")
         @Enumerated(EnumType.STRING)
-        Voltagem voltagem,
-        @NotNull(message = "Horas de uso nao pode ser nulo")
-        int horaUso
-
-
-
+        Voltagem voltagem
 ) { }
 

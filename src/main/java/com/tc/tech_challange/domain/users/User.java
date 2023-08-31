@@ -3,6 +3,7 @@ package com.tc.tech_challange.domain.users;
 import com.tc.tech_challange.domain.endereco.Endereco;
 import com.tc.tech_challange.domain.pessoas.Pessoa;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -16,6 +17,7 @@ import java.util.UUID;
 @Table(name="table_User")
 @Entity(name="User")
 @NoArgsConstructor
+@AllArgsConstructor
 @Getter
 @Setter
 public class User {
@@ -38,7 +40,7 @@ public class User {
     @OneToMany(mappedBy = "user")
     private Set<Pessoa> pessoas;
 
-    public User(DataRegisterUser data){
+    public User(DadosCadastroUser data){
         this.user_email = data.email();
         this.user_password = data.password();
     }

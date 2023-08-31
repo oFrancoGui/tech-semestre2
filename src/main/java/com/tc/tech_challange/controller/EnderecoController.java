@@ -21,7 +21,7 @@ public class EnderecoController {
     public ResponseEntity cadastrar(@RequestBody @Valid DadosCadastroEndereco dados, UriComponentsBuilder uriBuilder) {
         var endereco = new Endereco(dados);
         repository.save(endereco);
-        var uri = uriBuilder.path("/enderecos/{id}").buildAndExpand(endereco.getId()).toUri();
+        var uri = uriBuilder.path("/endereco/{id}").buildAndExpand(endereco.getId()).toUri();
         return ResponseEntity.created(uri).body(new DadosDetalhamentoEndereco(endereco));
     }
     @GetMapping("/{id}")

@@ -1,7 +1,7 @@
 package com.tc.tech_challange.controller;
 
 
-import com.tc.tech_challange.domain.users.DataRegisterUser;
+import com.tc.tech_challange.domain.users.DadosCadastroUser;
 import com.tc.tech_challange.domain.users.DataUserDetails;
 import com.tc.tech_challange.domain.users.User;
 import com.tc.tech_challange.repositories.UserRepository;
@@ -22,12 +22,12 @@ public class UserController {
     @Autowired
     private UserRepository repository;
     @PostMapping
-    public ResponseEntity register(@RequestBody @Valid DataRegisterUser data, UriComponentsBuilder uriBuilder){
+    public ResponseEntity register(@RequestBody @Valid DadosCadastroUser data, UriComponentsBuilder uriBuilder){
 
         JSONObject response = new JSONObject();
         var user = new User(data);
         repository.save(user);
-        var uri = uriBuilder.path("/eletro/{id}").buildAndExpand(user.getId()).toUri();
+        var uri = uriBuilder.path("/user/{id}").buildAndExpand(user.getId()).toUri();
         return ResponseEntity.created(uri).body(new DataUserDetails(user));
     }
 

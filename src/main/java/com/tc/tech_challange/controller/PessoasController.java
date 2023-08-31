@@ -34,7 +34,7 @@ public class PessoasController {
             var pessoas = new Pessoa(dados);
             repository.save(pessoas);
             var uri = uriBuilder.path("/pessoas/{id}").buildAndExpand(pessoas.getId()).toUri();
-            response.put("message", "Usuario registrdo com sucesso");
+            response.put("message", "Usuario registrado com sucesso");
             return ResponseEntity.status(HttpStatus.OK).body(response.toString());
         }
     }
