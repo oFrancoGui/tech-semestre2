@@ -1,5 +1,6 @@
 package com.tc.tech_challange.domain.pessoas;
 
+import com.tc.tech_challange.domain.users.User;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.validation.constraints.*;
@@ -22,6 +23,8 @@ public record DadosCadastroPessoa(
         @Email(message = "email invalido")
         String email,
 
+        @NotNull(message = "usuario nao pode ser nulo")
+        User user,
 
         @NotNull(message = "data nao pode ser nulo")
         @Past(message = "must be before the current date")
@@ -32,6 +35,7 @@ public record DadosCadastroPessoa(
         @NotNull(message = "genero nao pode ser nulo")
         @Enumerated(EnumType.STRING)
         Genero genero)
+
         {
 
         }

@@ -11,7 +11,7 @@ public record DadosCadastroEndereco(
         String rua,
         @NotNull(message = "numero cannot be null")
         int numero,
-        @NotNull(message = "compl cannot be null")
+        @NotNull(message = "complemento cannot be null")
         String compl,
         @NotNull(message = "bairro cannot be null")
         String bairro,
