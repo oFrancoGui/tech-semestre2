@@ -5,10 +5,10 @@ import com.tc.tech_challange.domain.usoEletroEndereco.UsoEletroEndereco;
 import com.tc.tech_challange.repositories.UsoEletroEnderecoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Optional;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("api/v2/usoEletroEndereco")
@@ -24,6 +24,14 @@ public class UsoEletroEnderecoController {
         return ResponseEntity.ok("Uso de eletrônico registrado com sucesso.");
     }
 
-
-
+    @PutMapping
+    public ResponseEntity<String> atualizarHorasConsumo(@PathVariable UUID id, int totalHoras) {
+        Optional<UsoEletroEndereco> usoEletroEndereco = usoEletroEnderecoRepository.findById(id);
+        if (usoEletroEndereco.isPresent()) {
+            usoEletroEndereco.get().setHorasUso(totalHoras);
+        } else {
+            throw new RuntimeException("nao foi possível encontrar o usoEletroEndereco");
+        }
+        return ResponseEntity.ok("total de horas utilizadas atualizada com sucesso.");
+    }
 }

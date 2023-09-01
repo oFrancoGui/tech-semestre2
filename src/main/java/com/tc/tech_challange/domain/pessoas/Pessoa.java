@@ -17,7 +17,7 @@ import java.util.UUID;
 @Getter
 @Setter
 @Entity
-@Table(name = "pessoa")
+@Table(name = "tabela_pessoa")
 
 
 public class Pessoa {
@@ -27,7 +27,7 @@ public class Pessoa {
     @Column(name="uuid_pessoa")
     private UUID id;
     @ManyToOne
-    @JoinColumn (name = "uuid_user", nullable = false)
+    @JoinColumn (name = "uuid_user")
     private User user;
     @Column(name="cpf")
     private String cpf;

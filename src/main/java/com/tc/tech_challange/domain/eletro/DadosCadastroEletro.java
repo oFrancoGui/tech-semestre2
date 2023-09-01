@@ -14,6 +14,8 @@ public record DadosCadastroEletro(
         String marca,
         @NotNull(message = "potencia nao pode ser nulo")
         int potencia,
+        @NotNull(message = "potencia nao pode ser nulo")
+        int horasUso,
         @NotNull(message = "voltagem nao pode ser nulo")
         @Enumerated(EnumType.STRING)
         Voltagem voltagem

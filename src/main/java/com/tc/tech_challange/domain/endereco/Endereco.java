@@ -8,22 +8,21 @@ import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.GenericGenerator;
 
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
-@Table(name = "endereco")
+@Table(name = "tabela_endereco")
 @Entity(name = "Endereco")
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 public class Endereco {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(generator = "UUID")
+    @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
     @Column(name="uuid_endereco")
-    private Long id;
+    private UUID id;
     @Column(name="CEP")
     private int cep;
     @Column(name="Rua")

@@ -23,7 +23,6 @@ public record DadosCadastroPessoa(
         @Email(message = "email invalido")
         String email,
 
-        @NotNull(message = "usuario nao pode ser nulo")
         User user,
 
         @NotNull(message = "data nao pode ser nulo")
