@@ -25,10 +25,10 @@ public class UsoEletroEndereco {
 
     @ManyToOne
     @JoinColumn(name = "id_eletro", nullable = false)
-    Eletro eletro;
+    private Eletro eletro;
     @ManyToOne
     @JoinColumn(name = "uuid_endereco", nullable = false)
-    Endereco endereco;
+    private Endereco endereco;
 
     @Column(name="HorasUso")
     private int horasUso;
@@ -37,5 +37,13 @@ public class UsoEletroEndereco {
         this.eletro = dados.eletro();
         this.endereco = dados.endereco();
         this.horasUso = dados.horasUso();
+    }
+
+    public int getHorasUso() {
+        return horasUso;
+    }
+
+    public void setHorasUso(int horasUso) {
+        this.horasUso = horasUso;
     }
 }
