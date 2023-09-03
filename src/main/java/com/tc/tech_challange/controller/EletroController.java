@@ -13,6 +13,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
+
+import java.util.UUID;
+
 @RestController
 @RequestMapping("api/v2/eletro")
 public class EletroController<uriBuilder> {
@@ -40,7 +43,7 @@ public class EletroController<uriBuilder> {
     }
     @GetMapping("/{id}")
     @Transactional
-    public ResponseEntity detalhar(@PathVariable Long id){
+    public ResponseEntity detalhar(@PathVariable UUID id){
         var eletro = repository.getReferenceById(id);
         return ResponseEntity.ok(new DadosDetalhamentoEletro(eletro));
     }

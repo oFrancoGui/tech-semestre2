@@ -24,10 +24,11 @@ public class EnderecoController {
         var uri = uriBuilder.path("/endereco/{id}").buildAndExpand(endereco.getId()).toUri();
         return ResponseEntity.created(uri).body(new DadosDetalhamentoEndereco(endereco));
     }
-    @GetMapping("/{id}")
+    //ARRUMANDO ISSO AQUI
+    @GetMapping("/{texto}")
     @Transactional
-    public ResponseEntity detalhar(@PathVariable Integer id){
-            var endereco = repository.getReferenceById(id);
+    public ResponseEntity detalhar(@PathVariable String texto){
+            var endereco = repository.findAll(texto);
             return ResponseEntity.ok(new DadosDetalhamentoEndereco(endereco));
     }
 }

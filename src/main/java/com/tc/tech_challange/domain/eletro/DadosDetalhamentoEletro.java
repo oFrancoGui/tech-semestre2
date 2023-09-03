@@ -4,4 +4,6 @@ public record DadosDetalhamentoEletro(String titulo, String ean, String marca, i
     public DadosDetalhamentoEletro (Eletro eletro){
         this(eletro.getTitulo(),eletro.getEan(),eletro.getMarca(),eletro.getPotencia(),eletro.getVoltagem());
     }
+
+
 }
