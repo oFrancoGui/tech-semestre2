@@ -53,7 +53,7 @@ public class PessoasController {
         return ResponseEntity.noContent().build();
     }
 
-    @PutMapping
+    @PutMapping("{id}")
     public ResponseEntity<Pessoa> atualizar(@PathVariable UUID id, @Valid DadosCadastroPessoa dados) {
         Pessoa pessoaAtualizado = repository.findById(id).orElseThrow(() -> new RuntimeException("pessoa não encontrado"));
         pessoaAtualizado.setCpf(dados.cpf());
