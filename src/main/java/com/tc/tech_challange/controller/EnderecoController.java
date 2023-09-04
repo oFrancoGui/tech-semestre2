@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import java.util.UUID;
+
 @RestController
 @RequestMapping("api/v2/endereco")
 public class EnderecoController {
@@ -27,21 +29,21 @@ public class EnderecoController {
         return ResponseEntity.created(uri).body(new DadosDetalhamentoEndereco(endereco));
     }
     //ARRUMANDO ISSO AQUI
-    @GetMapping("/{texto}")
+    @GetMapping("/{id}")
     @Transactional
-    public ResponseEntity detalhar(@PathVariable String texto){
-            var endereco = repository.findAll(texto);
+    public ResponseEntity detalhar(@PathVariable UUID id){
+            var endereco = repository.getReferenceById(id);
             return ResponseEntity.ok(new DadosDetalhamentoEndereco(endereco));
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> deleteById(@PathVariable Integer id) {
+    public ResponseEntity<?> deleteById(@PathVariable UUID id) {
         repository.deleteById(id);
         return ResponseEntity.noContent().build();
     }
 
-    @PutMapping
-    public ResponseEntity<Endereco> atualizar(@PathVariable Integer id, @Valid DadosCadastroEndereco dados) {
+    @PutMapping("/{id}")
+    public ResponseEntity<Endereco> atualizar(@PathVariable UUID id, @Valid DadosCadastroEndereco dados) {
         Endereco enderecoAtualizado = repository.findById(id).orElseThrow(() -> new RuntimeException("endereco não encontrado"));
         enderecoAtualizado.setBairro(dados.bairro());
         enderecoAtualizado.setCep(dados.cep());

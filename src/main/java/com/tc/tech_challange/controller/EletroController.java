@@ -59,7 +59,7 @@ public class EletroController<uriBuilder> {
         return ResponseEntity.noContent().build();
     }
 
-    @PutMapping
+    @PutMapping("{id}")
     public ResponseEntity<Eletro> atualizar(@PathVariable UUID id, @Valid DadosCadastroEletro dados) {
         Eletro eletroAtualizado = repository.findById(id).orElseThrow(() -> new RuntimeException("eletro não encontrado"));
         eletroAtualizado.setEan(dados.ean());
