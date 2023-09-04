@@ -44,4 +44,10 @@ public class PessoasController {
         var pessoas = repository.getReferenceById(id);
         return ResponseEntity.ok(new DadosDetalhamentoPessoas(pessoas));
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deleteById(@PathVariable Integer id){
+        repository.deleteById(id);
+        return ResponseEntity.noContent().build();
+    }
 }

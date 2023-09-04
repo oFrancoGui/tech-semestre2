@@ -13,6 +13,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
+
+import java.util.Optional;
+
 @RestController
 @RequestMapping("api/v2/eletro")
 public class EletroController<uriBuilder> {
@@ -43,5 +46,14 @@ public class EletroController<uriBuilder> {
     public ResponseEntity detalhar(@PathVariable Long id){
         var eletro = repository.getReferenceById(id);
         return ResponseEntity.ok(new DadosDetalhamentoEletro(eletro));
+    }
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deleteById(@PathVariable Long id) {
+        Optional<Eletro> device = repository.findById(id);
+        device.ifPresentOrElse(repository::delete, () -> {
+            throw new RuntimeException("Device not found!");
+        });
+
+        return ResponseEntity.noContent().build();
     }
 }

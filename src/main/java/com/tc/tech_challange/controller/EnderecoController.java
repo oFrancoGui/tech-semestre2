@@ -30,4 +30,10 @@ public class EnderecoController {
             var endereco = repository.getReferenceById(id);
             return ResponseEntity.ok(new DadosDetalhamentoEndereco(endereco));
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deleteById(@PathVariable Integer id) {
+        repository.deleteById(id);
+        return ResponseEntity.noContent().build();
+    }
 }
