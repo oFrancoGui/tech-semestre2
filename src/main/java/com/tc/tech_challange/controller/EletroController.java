@@ -14,7 +14,9 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
+
 import java.util.Optional;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("api/v2/eletro")
@@ -43,12 +45,12 @@ public class EletroController<uriBuilder> {
     }
     @GetMapping("/{id}")
     @Transactional
-    public ResponseEntity detalhar(@PathVariable Long id){
+    public ResponseEntity detalhar(@PathVariable UUID id){
         var eletro = repository.getReferenceById(id);
         return ResponseEntity.ok(new DadosDetalhamentoEletro(eletro));
     }
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> deleteById(@PathVariable Long id) {
+    public ResponseEntity<?> deleteById(@PathVariable UUID id) {
         Optional<Eletro> device = repository.findById(id);
         device.ifPresentOrElse(repository::delete, () -> {
             throw new RuntimeException("Device not found!");
@@ -58,7 +60,7 @@ public class EletroController<uriBuilder> {
     }
 
     @PutMapping
-    public ResponseEntity<Eletro> atualizar(@PathVariable Long id, @Valid DadosCadastroEletro dados) {
+    public ResponseEntity<Eletro> atualizar(@PathVariable UUID id, @Valid DadosCadastroEletro dados) {
         Eletro eletroAtualizado = repository.findById(id).orElseThrow(() -> new RuntimeException("eletro não encontrado"));
         eletroAtualizado.setEan(dados.getEan());
         eletroAtualizado.setHorasUso(dados.getHorasUso());

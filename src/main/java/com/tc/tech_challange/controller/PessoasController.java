@@ -16,6 +16,8 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import java.util.UUID;
+
 @RestController
 @RequestMapping("api/v2/pessoa")
 public class PessoasController {
@@ -42,19 +44,19 @@ public class PessoasController {
     }
     @GetMapping("/{id}")
     @Transactional
-    public ResponseEntity detalhar(@PathVariable Integer id){
+    public ResponseEntity detalhar(@PathVariable UUID id){
         var pessoas = repository.getReferenceById(id);
         return ResponseEntity.ok(new DadosDetalhamentoPessoas(pessoas));
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> deleteById(@PathVariable Integer id){
+    public ResponseEntity<?> deleteById(@PathVariable UUID id){
         repository.deleteById(id);
         return ResponseEntity.noContent().build();
     }
 
     @PutMapping
-    public ResponseEntity<Pessoa> atualizar(@PathVariable Integer id, @Valid DadosCadastroPessoa dados) {
+    public ResponseEntity<Pessoa> atualizar(@PathVariable UUID id, @Valid DadosCadastroPessoa dados) {
         Pessoa pessoaAtualizado = repository.findById(id).orElseThrow(() -> new RuntimeException("pessoa não encontrado"));
         pessoaAtualizado.setCpf(dados.getCpf());
         pessoaAtualizado.setData(dados.getData());

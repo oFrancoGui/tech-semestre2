@@ -5,8 +5,10 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.web.bind.annotation.PathVariable;
 
-public interface EletroRepository extends JpaRepository<Eletro, Long> {
-    Eletro getReferenceById(PathVariable id);
+import java.util.UUID;
+
+public interface EletroRepository extends JpaRepository<Eletro, UUID> {
+    Eletro getReferenceById(UUID id);
 
     Page<Eletro> findAll(Pageable paginacao);
 
