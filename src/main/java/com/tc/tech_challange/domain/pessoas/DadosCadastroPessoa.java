@@ -8,7 +8,6 @@ import lombok.Getter;
 import org.hibernate.validator.constraints.br.CPF;
 
 import java.util.Date;
-@Getter
 public record DadosCadastroPessoa(
 
         @NotEmpty(message = "cpf nao pode ser nulo")

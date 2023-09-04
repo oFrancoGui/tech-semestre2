@@ -43,13 +43,13 @@ public class EnderecoController {
     @PutMapping
     public ResponseEntity<Endereco> atualizar(@PathVariable Integer id, @Valid DadosCadastroEndereco dados) {
         Endereco enderecoAtualizado = repository.findById(id).orElseThrow(() -> new RuntimeException("endereco não encontrado"));
-        enderecoAtualizado.setBairro(dados.getBairro());
-        enderecoAtualizado.setCep(dados.getCep());
+        enderecoAtualizado.setBairro(dados.bairro());
+        enderecoAtualizado.setCep(dados.cep());
         enderecoAtualizado.setCidade(dados.cidade());
         enderecoAtualizado.setCompl(dados.compl());
-        enderecoAtualizado.setEstado(dados.getEstado());
-        enderecoAtualizado.setNumero(dados.getNumero());
-        enderecoAtualizado.setRua(dados.getRua());
+        enderecoAtualizado.setEstado(dados.estado());
+        enderecoAtualizado.setNumero(dados.numero());
+        enderecoAtualizado.setRua(dados.rua());
         repository.save(enderecoAtualizado);
         return ResponseEntity.ok(enderecoAtualizado);
     }

@@ -5,7 +5,6 @@ import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 
 
-@Getter
 public record DadosCadastroEndereco(
         @NotNull(message = "Cep cannot be null")
         int cep,
