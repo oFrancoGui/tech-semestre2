@@ -3,7 +3,11 @@ package com.tc.tech_challange.domain.eletro;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.validation.constraints.NotNull;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 public record DadosCadastroEletro(
 
         @NotNull(message = "titulo nao pode ser nulo")

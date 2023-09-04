@@ -1,5 +1,7 @@
 package com.tc.tech_challange.controller;
 
+import com.tc.tech_challange.domain.eletro.DadosCadastroEletro;
+import com.tc.tech_challange.domain.eletro.Eletro;
 import com.tc.tech_challange.domain.endereco.DadosCadastroEndereco;
 import com.tc.tech_challange.domain.endereco.DadosDetalhamentoEndereco;
 import com.tc.tech_challange.domain.endereco.Endereco;
@@ -35,5 +37,19 @@ public class EnderecoController {
     public ResponseEntity<?> deleteById(@PathVariable Integer id) {
         repository.deleteById(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @PutMapping
+    public ResponseEntity<Endereco> atualizar(@PathVariable Integer id, @Valid DadosCadastroEndereco dados) {
+        Endereco enderecoAtualizado = repository.findById(id).orElseThrow(() -> new RuntimeException("endereco não encontrado"));
+        enderecoAtualizado.setBairro(dados.getBairro());
+        enderecoAtualizado.setCep(dados.getCep());
+        enderecoAtualizado.setCidade(dados.cidade());
+        enderecoAtualizado.setCompl(dados.compl());
+        enderecoAtualizado.setEstado(dados.getEstado());
+        enderecoAtualizado.setNumero(dados.getNumero());
+        enderecoAtualizado.setRua(dados.getRua());
+        repository.save(enderecoAtualizado);
+        return ResponseEntity.ok(enderecoAtualizado);
     }
 }

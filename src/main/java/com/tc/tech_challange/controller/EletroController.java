@@ -56,4 +56,17 @@ public class EletroController<uriBuilder> {
 
         return ResponseEntity.noContent().build();
     }
+
+    @PutMapping
+    public ResponseEntity<Eletro> atualizar(@PathVariable Long id, @Valid DadosCadastroEletro dados) {
+        Eletro eletroAtualizado = repository.findById(id).orElseThrow(() -> new RuntimeException("eletro não encontrado"));
+        eletroAtualizado.setEan(dados.getEan());
+        eletroAtualizado.setHorasUso(dados.getHorasUso());
+        eletroAtualizado.setMarca(dados.getMarca());
+        eletroAtualizado.setPotencia(dados.getPotencia());
+        eletroAtualizado.setVoltagem(dados.getVoltagem());
+        eletroAtualizado.setTitulo(dados.getTitulo());
+        repository.save(eletroAtualizado);
+        return ResponseEntity.ok(eletroAtualizado);
+    }
 }

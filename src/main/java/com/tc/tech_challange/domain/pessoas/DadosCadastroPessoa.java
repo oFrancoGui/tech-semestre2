@@ -4,10 +4,11 @@ import com.tc.tech_challange.domain.users.User;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.validation.constraints.*;
+import lombok.Getter;
 import org.hibernate.validator.constraints.br.CPF;
 
 import java.util.Date;
-
+@Getter
 public record DadosCadastroPessoa(
 
         @NotEmpty(message = "cpf nao pode ser nulo")

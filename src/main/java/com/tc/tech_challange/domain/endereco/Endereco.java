@@ -4,10 +4,7 @@ import com.tc.tech_challange.domain.eletro.Eletro;
 import com.tc.tech_challange.domain.pessoas.Pessoa;
 import com.tc.tech_challange.domain.usoEletroEndereco.UsoEletroEndereco;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 
 import java.util.*;
@@ -17,6 +14,7 @@ import java.util.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
+@Setter
 public class Endereco {
     @Id
     @GeneratedValue(generator = "UUID")

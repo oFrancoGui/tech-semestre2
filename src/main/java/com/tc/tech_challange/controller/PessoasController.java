@@ -1,5 +1,7 @@
 package com.tc.tech_challange.controller;
 
+import com.tc.tech_challange.domain.eletro.DadosCadastroEletro;
+import com.tc.tech_challange.domain.eletro.Eletro;
 import com.tc.tech_challange.domain.pessoas.DadosCadastroPessoa;
 import com.tc.tech_challange.domain.pessoas.DadosDetalhamentoPessoas;
 import com.tc.tech_challange.domain.pessoas.Pessoa;
@@ -49,5 +51,18 @@ public class PessoasController {
     public ResponseEntity<?> deleteById(@PathVariable Integer id){
         repository.deleteById(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @PutMapping
+    public ResponseEntity<Pessoa> atualizar(@PathVariable Integer id, @Valid DadosCadastroPessoa dados) {
+        Pessoa pessoaAtualizado = repository.findById(id).orElseThrow(() -> new RuntimeException("pessoa não encontrado"));
+        pessoaAtualizado.setCpf(dados.getCpf());
+        pessoaAtualizado.setData(dados.getData());
+        pessoaAtualizado.setEmail(dados.getEmail());
+        pessoaAtualizado.setGenero(dados.getGenero());
+        pessoaAtualizado.setNome(dados.getNome());
+        pessoaAtualizado.setParentesco(dados.getParentesco());
+        repository.save(pessoaAtualizado);
+        return ResponseEntity.ok(pessoaAtualizado);
     }
 }
