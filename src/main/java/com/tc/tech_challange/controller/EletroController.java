@@ -38,9 +38,8 @@ public class EletroController<uriBuilder> {
         var eletro = new Eletro(dados);
         repository.save(eletro);
         var uri = uriBuilder.path("/eletro/{id}").buildAndExpand(eletro.getId()).toUri();
-        response.put("message", "Eletro registrdo com sucesso");
+        response.put("message", "Eletro registrado com sucesso, ID: " + eletro.getId());
         return ResponseEntity.status(HttpStatus.OK).body(response.toString());
-
 
     }
     @GetMapping("/{id}")
@@ -59,8 +58,11 @@ public class EletroController<uriBuilder> {
         return ResponseEntity.noContent().build();
     }
 
+    @SneakyThrows
     @PutMapping("{id}")
-    public ResponseEntity<Eletro> atualizar(@PathVariable UUID id, @Valid DadosCadastroEletro dados) {
+    public ResponseEntity<String> atualizar(@PathVariable UUID id, @Valid @RequestBody DadosCadastroEletro dados) {
+        JSONObject response = new JSONObject();
+
         Eletro eletroAtualizado = repository.findById(id).orElseThrow(() -> new RuntimeException("eletro não encontrado"));
         eletroAtualizado.setEan(dados.ean());
         eletroAtualizado.setHorasUso(dados.horasUso());
@@ -69,6 +71,7 @@ public class EletroController<uriBuilder> {
         eletroAtualizado.setVoltagem(dados.voltagem());
         eletroAtualizado.setTitulo(dados.titulo());
         repository.save(eletroAtualizado);
-        return ResponseEntity.ok(eletroAtualizado);
+        response.put("message", "Dados atualizados com sucesso");
+        return ResponseEntity.status(HttpStatus.OK).body(response.toString());
     }
 }
