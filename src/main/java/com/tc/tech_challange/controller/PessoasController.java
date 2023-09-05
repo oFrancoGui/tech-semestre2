@@ -33,10 +33,10 @@ public class PessoasController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response.toString());
         }
         else {
-            var pessoas = new Pessoa(dados);
-            repository.save(pessoas);
-            var uri = uriBuilder.path("/pessoas/{id}").buildAndExpand(pessoas.getId()).toUri();
-            response.put("message", "Usuario registrado com sucesso");
+            var pessoa = new Pessoa(dados);
+            repository.save(pessoa);
+            var uri = uriBuilder.path("/pessoas/{id}").buildAndExpand(pessoa.getId()).toUri();
+            response.put("message", "Usuario registrado com sucesso, ID: " + pessoa.getId());
             return ResponseEntity.status(HttpStatus.OK).body(response.toString());
         }
     }
