@@ -53,8 +53,11 @@ public class PessoasController {
         return ResponseEntity.noContent().build();
     }
 
+    @SneakyThrows
     @PutMapping("{id}")
-    public ResponseEntity<Pessoa> atualizar(@PathVariable UUID id, @Valid DadosCadastroPessoa dados) {
+    public ResponseEntity<String> atualizar(@PathVariable UUID id, @Valid @RequestBody DadosCadastroPessoa dados) {
+        JSONObject response = new JSONObject();
+
         Pessoa pessoaAtualizado = repository.findById(id).orElseThrow(() -> new RuntimeException("pessoa não encontrado"));
         pessoaAtualizado.setCpf(dados.cpf());
         pessoaAtualizado.setData(dados.data());
@@ -63,6 +66,7 @@ public class PessoasController {
         pessoaAtualizado.setNome(dados.nome());
         pessoaAtualizado.setParentesco(dados.parentesco());
         repository.save(pessoaAtualizado);
-        return ResponseEntity.ok(pessoaAtualizado);
+        response.put("message", "Dados atualizados com sucesso");
+        return ResponseEntity.status(HttpStatus.OK).body(response.toString());
     }
 }
