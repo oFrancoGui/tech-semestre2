@@ -21,11 +21,11 @@ public class UsoEletroEnderecoController {
     public ResponseEntity<String> registrarUsoEletroEndereco(@RequestBody DadosCadastroUsoEletroEndereco dados) {
         var usoEletroEndereco = new UsoEletroEndereco(dados);
         usoEletroEnderecoRepository.save(usoEletroEndereco);
-        return ResponseEntity.ok("Uso de eletrônico registrado com sucesso.");
+        return ResponseEntity.ok("Uso de eletrônico registrado com sucesso. ID = " + usoEletroEndereco.getId());
     }
 
-    @PutMapping
-    public ResponseEntity<String> atualizarHorasConsumo(@PathVariable UUID id, int totalHoras) {
+    @PutMapping("/{id}/{totalHoras}")
+    public ResponseEntity<String> atualizarHorasConsumo(@PathVariable UUID id, @PathVariable int totalHoras) {
         Optional<UsoEletroEndereco> usoEletroEndereco = usoEletroEnderecoRepository.findById(id);
         if (usoEletroEndereco.isPresent()) {
             usoEletroEndereco.get().setHorasUso(totalHoras);
