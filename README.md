@@ -1,6 +1,11 @@
 # #####| Tech-Semestre2 |######
-* Aluno: Vinícius Miranda de Menezes
 * Fiap turma: 1ADJT
+* GRUPO: 60
+   *  Eric da Silva Moraes - RM 348492
+   * Lucca Brito Gesteira - RM 349111
+   *  Guilherme Franco - RM 350562
+   *  Vinícius Miranda de Menezes - RM 348870
+
 
 Desenvolvimento de um sistema WEB, com interfaces e APIs, para cadastro de Pessoas, Casas
 e Eletrodomésticos. Este sistema tem por finalidade calcular o consumo mensal de energia.
@@ -75,7 +80,7 @@ Entrada
 Saída
 * String: Json do objeto DadosDetalhamentoEndereco, com os dados do Endereço persistido no banco de daos.
 
-Request GET ex.:
+URI da Request GET ex.:
 ```
 http://localhost:8080/api/v2/endereco/eaf79fe6-9043-41c4-b61e-64e2a0310906
 ```
@@ -102,7 +107,7 @@ Entrada
 Saída
 * JSON de DadosCadastroEndereco: Json com os dados do Endereço persistido no banco de dados.
 
-Request POST ex.:
+URI da Request POST ex.:
 ```
 http://localhost:8080/api/v2/endereco
 
@@ -140,24 +145,10 @@ Entrada
 Saída
 * String: Resposta de exclusão com sucesso.
 
-Request POST ex.:
+URI da Request DELETE ex.:
 ```
-http://localhost:8080/api/v2/endereco
-
-{
-  "cep": 12345678,
-  "rua": "Rua dos Bobos",
-  "numero": 5,
-  "compl": "",
-  "bairro": "Vila do Chaves",
-  "cidade": "São Paulo",
-  "estado": "SP"
-}
+http://localhost:8080/api/v2/endereco/40edc7a4-df0f-4ad9-95b5-0b1a5c8693e3
 ```
-
-Request DELETE ex.:
-
-`http://localhost:8080/api/v2/endereco/40edc7a4-df0f-4ad9-95b5-0b1a5c8693e3`
 
 Response DELETE ex.:
 
@@ -173,7 +164,7 @@ Entrada
 Saída
 * String: Resposta de atualização realizada com sucesso.
 
-Request PUT ex.:
+URI da Request PUT ex.:
 
 ```
 http://localhost:8080/api/v2/endereco/40edc7a4-df0f-4ad9-95b5-0b1a5c8693e3
@@ -193,6 +184,14 @@ Response PUT ex.:
 
 `Dados atualizados com sucesso`
 
+
+# Como empacotar e rodar o projeto
+
+```
+./mvnw clean package
+
+java -jar target/smart-class-0.0.1-SNAPSHOT.jar
+```
 
 
 
