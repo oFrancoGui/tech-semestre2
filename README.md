@@ -300,6 +300,74 @@ Response PUT ex.:
 
 `"Dados atualizados com sucesso"`
 
+## API de UsoEletroEndereco
+- **Objetivo:** Com base no repositório de elétros já cadastrados, permite cadastrar o eletro num dos endereços do usuário.
+Assim um mesmo cadastro de elétro pode ser retuilizado para multiplos cadastros de uso em um mesmo endereço ou diferentes endereços.
+Um elétro em uso possui dados de uso, como consumo de energia.
+- **Local:** src/main/java/com/tc/tech_challange/controller/UsoEletroEnderecoController.java
+- **Endpoint:** `localhost:8080/api/v2/usoEletroEndereco`
+
+### POST registrarUsoEletroEndereco
+
+Funcionalidade: Utilizado para criar uma relação entre um eletrodoméstico, um endereço e um total de horas utilizados, através do body, no qual são informados estes três dados.
+
+Endpoint: `localhost:8080/api/v2/usoEletroEndereco`
+
+Entrada
+* JSON de DadosCadastroUsoEletroEndereco: Informa o cadastro do Eletro em uso;
+
+Saída
+* String: Mensagem de dados castrados com sucesso.
+
+URI da Request POST ex.:
+```
+{
+    "eletro": {
+    	"id": "5328ffea-43a7-11ee-be56-0242ac120002",
+    	"titulo": "Smart Lâmpada Wi-Fi",
+    	"ean": "7899711165084",
+    	"marca": "POSITIVO",
+    	"potencia": 9,
+    	"voltagem": "V110"
+    },
+    "endereco": {
+    "id": "ba25898a-04f7-4c16-bc92-62505866ae45",
+    "cep": 52050635,
+    "rua": "R. das Dormes",
+    "numero": 46,
+    "compl": "apt 205",
+    "bairro": "Mustardinha",
+    "cidade": "Recife",
+    "estado": "PE"
+    },
+    "horasUso": 20
+}
+```
+
+Response POST ex.:
+
+`Uso de eletrônico registrado com sucesso. ID = 77da2e9f-9c9e-4148-af22-eaa361c67a01`
+
+### PUT atualizarHorasConsumo
+
+Funcionalidade: Utilizado para atualizar o total de horas utilizadas por aquele aparelho. Tanto o ID da relação quanto o total de horas são passados na URI.
+
+Endpoint: `lapi/v2/usoEletroEndereco/{id}/{totalHoras}`
+
+Entrada
+* UUID id: Informa o ID do eletro em uso a ter as horas em uso atualizado;
+* totalHoras int: informa o total de horas usadas;
+
+Saída
+* String: Mensagem de dados castrados com sucesso.
+
+URI da Request PUT ex.:
+```
+localhost:8080/api/v2/usoEletroEndereco/832581bf-e0a0-4c29-b2a9-b08c8aa777a1/40
+```
+
+Response PUT ex.:
+`localhost:8080/api/v2/usoEletroEndereco/832581bf-e0a0-4c29-b2a9-b08c8aa777a1/40`
 
 # Como empacotar e rodar o projeto
 
