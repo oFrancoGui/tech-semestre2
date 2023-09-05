@@ -1,7 +1,5 @@
 package com.tc.tech_challange.controller;
 
-import com.tc.tech_challange.domain.eletro.DadosCadastroEletro;
-import com.tc.tech_challange.domain.eletro.Eletro;
 import com.tc.tech_challange.domain.endereco.DadosCadastroEndereco;
 import com.tc.tech_challange.domain.endereco.DadosDetalhamentoEndereco;
 import com.tc.tech_challange.domain.endereco.Endereco;
@@ -25,7 +23,7 @@ public class EnderecoController {
     private EnderecoRepository repository;
     @PostMapping
     @Transactional
-    public ResponseEntity cadastrar(@RequestBody @Valid DadosCadastroEndereco dados, UriComponentsBuilder uriBuilder) {
+    public ResponseEntity<DadosDetalhamentoEndereco> cadastrar(@RequestBody @Valid DadosCadastroEndereco dados, UriComponentsBuilder uriBuilder) {
         var endereco = new Endereco(dados);
         repository.save(endereco);
         var uri = uriBuilder.path("/endereco/{id}").buildAndExpand(endereco.getId()).toUri();
@@ -34,7 +32,7 @@ public class EnderecoController {
     //ARRUMANDO ISSO AQUI
     @GetMapping("/{id}")
     @Transactional
-    public ResponseEntity detalhar(@PathVariable UUID id){
+    public ResponseEntity<DadosDetalhamentoEndereco> detalhar(@PathVariable UUID id){
             var endereco = repository.getReferenceById(id);
             return ResponseEntity.ok(new DadosDetalhamentoEndereco(endereco));
     }

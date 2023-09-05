@@ -25,7 +25,7 @@ public class PessoasController {
     @SneakyThrows // TODO: NAO USAR ISSO AQUI
     @PostMapping
     @Transactional
-    public ResponseEntity cadastrar(@RequestBody @Valid DadosCadastroPessoa dados, UriComponentsBuilder uriBuilder){
+    public ResponseEntity<String> cadastrar(@RequestBody @Valid DadosCadastroPessoa dados, UriComponentsBuilder uriBuilder){
         JSONObject response = new JSONObject();
 
         if(repository.existsByCpf(dados.cpf())){
@@ -42,7 +42,7 @@ public class PessoasController {
     }
     @GetMapping("/{id}")
     @Transactional
-    public ResponseEntity detalhar(@PathVariable UUID id){
+    public ResponseEntity<DadosDetalhamentoPessoas> detalhar(@PathVariable UUID id){
         var pessoas = repository.getReferenceById(id);
         return ResponseEntity.ok(new DadosDetalhamentoPessoas(pessoas));
     }

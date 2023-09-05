@@ -27,7 +27,7 @@ public class EletroController<uriBuilder> {
     @SneakyThrows
     @PostMapping
     @Transactional
-    public ResponseEntity cadastrar(@RequestBody @Valid DadosCadastroEletro dados, UriComponentsBuilder uriBuilder){
+    public ResponseEntity<String> cadastrar(@RequestBody @Valid DadosCadastroEletro dados, UriComponentsBuilder uriBuilder){
         JSONObject response = new JSONObject();
 
         if(repository.existsByEan(dados.ean())){
@@ -44,7 +44,7 @@ public class EletroController<uriBuilder> {
     }
     @GetMapping("/{id}")
     @Transactional
-    public ResponseEntity detalhar(@PathVariable UUID id){
+    public ResponseEntity<DadosDetalhamentoEletro> detalhar(@PathVariable UUID id){
         var eletro = repository.getReferenceById(id);
         return ResponseEntity.ok(new DadosDetalhamentoEletro(eletro));
     }
