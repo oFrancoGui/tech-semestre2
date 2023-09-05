@@ -7,7 +7,10 @@ import com.tc.tech_challange.domain.endereco.DadosDetalhamentoEndereco;
 import com.tc.tech_challange.domain.endereco.Endereco;
 import com.tc.tech_challange.repositories.EnderecoRepository;
 import jakarta.validation.Valid;
+import lombok.SneakyThrows;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.ResponseEntity;
@@ -42,8 +45,11 @@ public class EnderecoController {
         return ResponseEntity.noContent().build();
     }
 
+    @SneakyThrows
     @PutMapping("/{id}")
-    public ResponseEntity<Endereco> atualizar(@PathVariable UUID id, @Valid DadosCadastroEndereco dados) {
+    public ResponseEntity<String> atualizar(@PathVariable UUID id, @RequestBody @Valid DadosCadastroEndereco dados) {
+        JSONObject response = new JSONObject();
+
         Endereco enderecoAtualizado = repository.findById(id).orElseThrow(() -> new RuntimeException("endereco não encontrado"));
         enderecoAtualizado.setBairro(dados.bairro());
         enderecoAtualizado.setCep(dados.cep());
@@ -53,6 +59,7 @@ public class EnderecoController {
         enderecoAtualizado.setNumero(dados.numero());
         enderecoAtualizado.setRua(dados.rua());
         repository.save(enderecoAtualizado);
-        return ResponseEntity.ok(enderecoAtualizado);
+        response.put("message", "Dados atualizados com sucesso");
+        return ResponseEntity.status(HttpStatus.OK).body(response.toString());
     }
 }
