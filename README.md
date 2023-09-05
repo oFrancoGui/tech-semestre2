@@ -185,12 +185,128 @@ Response PUT ex.:
 `Dados atualizados com sucesso`
 
 
+## API de Cadastro de Pessoas
+- **Objetivo:** Cadastrar cadastrar as pessoas que estão vinculas a um usuário.
+- **Local:** src/main/java/com/tc/tech_challange/controller/PessoasController.java
+- **Endpoint:** `localhost:8080/api/v2/pessoa`
+
+
+### POST cadastrar
+Funcionalidade: Permite cadastar uma pessoa nova vincula ao usuário.
+
+Endpoint: `localhost:8080/api/v2/pessoa`
+
+Entrada
+* JSON de DadosCadastroPessoa: Classe com os dados de input da tela e validações, para cadastro de uma nova pessoa vinculada ao usuário.
+
+Saída
+* String: Resposta de sucesso ao cadastrar a pessoa.
+
+URI da Request POST ex.:
+```
+localhost:8080/api/v2/pessoa
+
+{
+    "email":"joana.marival@gmail.com",
+    "cpf":"44558105010",
+    "nome":"Joana Marival",
+    "parentesco":"MAE",
+    "genero":"FEMININO_CIS",
+    "data":"1976-06-01"
+}
+```
+
+Response POST ex.:
+
+`Usuario registrado com sucesso, ID: f732f856-3878-4081-b855-6d50e4a1d867`
+
+
+### GET detalhar
+Funcionalidade: Recupera os dados de uma pessoa cadastrada.
+
+Endpoint: `localhost:8080/api/v2/pessoa/{id}`
+
+Entrada
+* UUID id: ID da pessoa a ser detalhada.
+
+Saída
+* JSON de DadosDetalhamentoPessoas: Dados da pessoa recuperada no banco de dados.
+
+URI da Request GET ex.:
+
+`localhost:8080/api/v2/pessoa/f732f856-3878-4081-b855-6d50e4a1d867`
+
+Response GET ex.:
+
+```
+{
+    "cpf": "44558105010",
+    "nome": "Joana Marival",
+    "email": "joana.marival@gmail.com",
+    "data": "1976-06-01T00:00:00.000+00:00",
+    "parentesco": "MAE",
+    "genero": "FEMININO_CIS"
+}
+```
+
+### DELETE deleteById
+
+Funcionalidade: Excluí uma pessoa informada do banco de dados (delete físico).
+
+Endpoint: `localhost:8080/api/v2/pessoa/{id}`
+
+Entrada
+* UUID id: ID da pessoa a ser detalhada.
+
+Saída
+* String: Resposta de exclusão com sucesso.
+
+URI da Request DELETE ex.:
+
+`localhost:8080/api/v2/pessoa/f732f856-3878-4081-b855-6d50e4a1d867`
+
+Response DELETE ex.:
+
+`Registro excluído com sucesso.`
+
+### PUT atualizar
+
+Funcionalidade: Atualiza os dados da pessoa cadastrada.
+
+Endpoint: `localhost:8080/api/v2/pessoa/{id}`
+
+Entrada
+* UUID id: Indentificador da pessoa a ter os dados atualizados
+* JSON de DadosDetalhamentoPessoas: Contendo os dados alterados da pessoa
+
+Saída
+* String: Mensagem de dados atualizados com sucesso.
+
+URI da Request PUT ex.:
+```
+localhost:8080/api/v2/pessoa/f732f856-3878-4081-b855-6d50e4a1d867
+
+{
+    "email":"lucas.pedrosa@gmail.com",
+    "cpf":"87857312002",
+    "nome":"Lucas Pedrosa",
+    "parentesco":"IRMAO",
+    "genero":"MASCULINO_CIS",
+    "data":"1993-06-09"
+}
+```
+
+Response PUT ex.:
+
+`"Dados atualizados com sucesso"`
+
+
 # Como empacotar e rodar o projeto
 
 ```
 ./mvnw clean package
 
-java -jar target/smart-class-0.0.1-SNAPSHOT.jar
+java -jar target/tech-semestre2-0.0.1-SNAPSHOT.jar
 ```
 
 
